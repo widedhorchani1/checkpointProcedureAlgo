@@ -1,0 +1,62 @@
+FUNCTION read_length() : INTEGER
+VAR
+    n: INTEGER;
+BEGIN
+    REPEAT
+        WRITE("saisir longeur du tableau");
+        Read(n);
+    UNTIL (n<=0 OR n>100);
+    RETURN n ;
+END
+///
+PROCEDURE remplir_vect(VAR vect1: ARRAY_OF FLOAT ,VAR vect2: ARRAY_OF FLOAT,n:INTEGER)
+VAR
+    i:INTEGER:=0
+BEGIN
+    FOR i FROM 0 TO n-1   DO
+        Read(vect1[i]);
+        Read(vect2[i]);
+    END_FOR
+END
+///
+PROCEDURE Dot_Product(vect1: ARRAY_OF FLOAT ,vect2: ARRAY_OF FLOAT, n: INTEGER , VAR prod:FLOAT)
+VAR
+    i:INTEGER:=0;
+
+BEGIN
+    prod:=0;
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        prod:=prod+(vect1[i]*vect2[i]) 
+    END_FOR
+END
+///
+PROCEDURE result(produit: FLOAT)
+VAR
+BEGIN
+IF (produit = 0) THEN
+    WRITE("les deux vecteurs sont orthogonaux")
+    ELSE 
+    WRITE("les deux vecteurs ne sont  pas orthogonaux")
+
+END_IF
+END
+///
+ALGORITHM algorithm_name
+VAR 
+    Lg: INTEGER;
+    TAB1,TAB2 : ARRAY_OF FLOAT[100];
+    dot_prod: FLOAT;
+BEGIN
+    //read the length 
+    Lg:=read_length();
+    
+    // read the tabs
+    remplir_vect(TAB1,TAB2,Lg);
+    
+    //calculate the dot product
+    Dot_Product(TAB1,TAB2,lg,dot_prod);
+    
+    //display the final result
+    result(dot_prod);
+
+END
